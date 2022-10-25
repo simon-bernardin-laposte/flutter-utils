@@ -25,6 +25,7 @@ class PaginationConfiguration {
 /// seule page.
 class Pagination<T> extends Equatable {
   static PaginationConfiguration _configuration = PaginationConfiguration();
+
   static void configure(
       {int threshold = 100,
       PaginationConfigurationErrorHandler? errorHandler}) {
@@ -42,6 +43,7 @@ class Pagination<T> extends Equatable {
   final int count;
 
   bool get hasNext => count < total;
+
   bool get complete => !hasNext;
 
   @override
@@ -83,6 +85,7 @@ class PaginationConsumerStream<T> {
       {int? threshold})
       : threshold = threshold ?? Pagination._configuration.threshold {
     consumer.then(_add).catchError((error, stackTrace) {
+      print('DEBUG --- $error');
       _paginationStream.addError(error, stackTrace);
     });
     _stream = _paginationStream.stream;
@@ -99,10 +102,12 @@ class PaginationConsumerStream<T> {
   bool get isClosed => _paginationStream.isClosed;
 
   void _add(PaginationConsumer<T> event) {
-    _value = event;
-    _paginationStream.add(event);
-    if (!event.hasNext) {
-      if (!_paginationStream.isClosed) _paginationStream.close();
+    if (!_paginationStream.isClosed) {
+      _value = event;
+      _paginationStream.add(event);
+      if (!event.hasNext) {
+        if (!_paginationStream.isClosed) _paginationStream.close();
+      }
     }
   }
 
