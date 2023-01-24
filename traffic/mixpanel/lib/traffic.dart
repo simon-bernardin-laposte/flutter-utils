@@ -40,7 +40,7 @@ class TrafficReportMixPanel implements TrafficReport {
 
   @override
   Future<void> init() async {
-    _mixPanel = await Mixpanel.init(_token, optOutTrackingDefault: true);
+    _mixPanel = await Mixpanel.init(_token, optOutTrackingDefault: true, trackAutomaticEvents: true);
     _mixPanel.setServerURL('https://api-eu.mixpanel.com');
   }
 
@@ -51,8 +51,7 @@ class TrafficReportMixPanel implements TrafficReport {
   }
 
   @override
-  Future<void> setUserId(TrafficUserId userId,
-      {TrafficUserProperties properties = const {}}) async {
+  Future<void> setUserId(TrafficUserId userId, {TrafficUserProperties properties = const {}}) async {
     _mixPanel.identify(userId);
     await setUserProperties(properties);
   }
@@ -67,8 +66,7 @@ class TrafficReportMixPanel implements TrafficReport {
   }
 
   @override
-  Future<void> removeUserProperties(
-      Iterable<TrafficEventPropertyId> properties) async {
+  Future<void> removeUserProperties(Iterable<TrafficEventPropertyId> properties) async {
     final people = _mixPanel.getPeople();
 
     for (final property in properties) {
@@ -77,16 +75,14 @@ class TrafficReportMixPanel implements TrafficReport {
   }
 
   @override
-  Future<void> incrementUserProperty(
-      TrafficEventPropertyId propertyId, double by) async {
+  Future<void> incrementUserProperty(TrafficEventPropertyId propertyId, double by) async {
     final people = _mixPanel.getPeople();
 
     people.increment(propertyId, by);
   }
 
   @override
-  Future<void> track(TrafficEventId eventId,
-      {TrafficEventProperties properties = const {}}) async {
+  Future<void> track(TrafficEventId eventId, {TrafficEventProperties properties = const {}}) async {
     _mixPanel.track(eventId, properties: properties);
   }
 
@@ -101,8 +97,7 @@ class TrafficReportMixPanel implements TrafficReport {
   }
 
   @override
-  Future<bool> getEnabled() async =>
-      await _mixPanel.hasOptedOutTracking() != true;
+  Future<bool> getEnabled() async => await _mixPanel.hasOptedOutTracking() != true;
 
   @override
   Future<void> setEnabled(bool enabled) async {

@@ -8,8 +8,7 @@ void main() {
 
   final mixpanel = TrafficReportMixPanel(token: 'TEST');
 
-  const MethodChannel('mixpanel_flutter')
-      .setMockMethodCallHandler((MethodCall methodCall) async {
+  const MethodChannel('mixpanel_flutter').setMockMethodCallHandler((MethodCall methodCall) async {
     // ignore: avoid_print
     print(methodCall.method);
   });
