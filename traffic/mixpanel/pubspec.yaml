@@ -14,12 +14,6 @@ dependencies:
   quiver: ^3.0.1
   mixpanel_flutter: ^2.0.0
 
-  lp_utils:
-    git:
-      url: https://github.com/devobs/flutter-utils
-      path: utils
-      ref: 1.0.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
