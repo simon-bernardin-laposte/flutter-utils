@@ -40,7 +40,7 @@ class TrafficReportMixPanel implements TrafficReport {
 
   @override
   Future<void> init() async {
-    _mixPanel = await Mixpanel.init(_token, optOutTrackingDefault: true, trackAutomaticEvents: true);
+    _mixPanel = await Mixpanel.init(_token, optOutTrackingDefault: false, trackAutomaticEvents: true);
     _mixPanel.setServerURL('https://api-eu.mixpanel.com');
   }
 
