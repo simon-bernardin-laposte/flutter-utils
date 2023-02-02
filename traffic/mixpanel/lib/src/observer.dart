@@ -1,6 +1,6 @@
 part of '../traffic.dart';
 
-class _MixPanelObserver extends NavigatorObserver {
+class MixPanelObserver extends NavigatorObserver {
   final TrafficReportMixPanel _mixPanel;
 
   final String screenEventId;
@@ -9,15 +9,13 @@ class _MixPanelObserver extends NavigatorObserver {
 
   final bool suffixEventScreenName;
 
-  _MixPanelObserver(this._mixPanel,
+  MixPanelObserver(this._mixPanel,
       {required this.screenEventId,
       required this.screenPropertyName,
       required this.screenPropertyEnter,
       required this.suffixEventScreenName});
 
-  Future<void> _track(String? screenName,
-      {required bool enter,
-      TrafficEventProperties properties = const {}}) async {
+  Future<void> _track(String? screenName, {required bool enter, TrafficEventProperties properties = const {}}) async {
     var newScreenEventId = screenEventId;
 
     if (suffixEventScreenName && isNotBlank(screenName)) {

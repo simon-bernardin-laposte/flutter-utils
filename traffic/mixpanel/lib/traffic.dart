@@ -110,7 +110,7 @@ class TrafficReportMixPanel implements TrafficReport {
 
   @override
   Iterable<NavigatorObserver> navigatorObservers() => [
-        _MixPanelObserver(this,
+        MixPanelObserver(this,
             screenEventId: screenEventId,
             screenPropertyName: screenPropertyName,
             screenPropertyEnter: screenPropertyEnter,
