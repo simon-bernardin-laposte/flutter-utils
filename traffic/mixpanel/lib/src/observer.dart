@@ -15,7 +15,7 @@ class MixPanelObserver extends NavigatorObserver {
       required this.screenPropertyEnter,
       required this.suffixEventScreenName});
 
-  Future<void> _track(String? screenName, {required bool enter, TrafficEventProperties properties = const {}}) async {
+  Future<void> track(String? screenName, {required bool enter, TrafficEventProperties properties = const {}}) async {
     var newScreenEventId = screenEventId;
 
     if (suffixEventScreenName && isNotBlank(screenName)) {
@@ -34,18 +34,18 @@ class MixPanelObserver extends NavigatorObserver {
 
   @override
   void didPop(Route route, Route? previousRoute) {
-    _track(route.settings.name, enter: false);
+    track(route.settings.name, enter: false);
   }
 
   @override
   void didPush(Route route, Route? previousRoute) {
-    _track(route.settings.name, enter: true);
+    track(route.settings.name, enter: true);
   }
 
   @override
   void didReplace({Route? newRoute, Route? oldRoute}) {
     if (newRoute != null) {
-      _track(newRoute.settings.name, enter: true);
+      track(newRoute.settings.name, enter: true);
     }
   }
 }
