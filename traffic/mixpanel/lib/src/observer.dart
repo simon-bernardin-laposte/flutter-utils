@@ -32,6 +32,10 @@ class MixPanelObserver extends NavigatorObserver {
     }
   }
 
+  Future<void> incrementUserProperty(TrafficEventPropertyId propertyId, double by) async {
+    await _mixPanel.incrementUserProperty(propertyId, by);
+  }
+
   @override
   void didPop(Route route, Route? previousRoute) {
     track(route.settings.name, enter: false);
