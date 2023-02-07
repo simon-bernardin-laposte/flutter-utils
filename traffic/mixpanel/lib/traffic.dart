@@ -54,7 +54,8 @@ class TrafficReportMixPanel implements TrafficReport {
     return _mixPanel.getDistinctId();
   }
 
-  Future<void> timeEvent(TrafficEventId eventId) async {
+  Future<void> timeEvent(TrafficEventId? eventId) async {
+    eventId ??= screenEventId;
     _mixPanel.timeEvent(eventId);
   }
 
