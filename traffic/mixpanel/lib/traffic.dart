@@ -54,6 +54,10 @@ class TrafficReportMixPanel implements TrafficReport {
     return _mixPanel.getDistinctId();
   }
 
+  Future<void> timeEvent(TrafficEventId eventId) async {
+    _mixPanel.timeEvent(eventId);
+  }
+
   @override
   Future<void> setUserId(TrafficUserId userId, {TrafficUserProperties properties = const {}}) async {
     _mixPanel.identify(userId);

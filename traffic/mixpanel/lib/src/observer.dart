@@ -32,6 +32,10 @@ class MixPanelObserver extends NavigatorObserver {
     }
   }
 
+  Future<void> timeEvent(TrafficEventId eventId) async {
+    await _mixPanel.timeEvent(eventId);
+  }
+
   Future<void> incrementUserProperty(TrafficEventPropertyId propertyId, double by) async {
     await _mixPanel.incrementUserProperty(propertyId, by);
   }
