@@ -32,6 +32,18 @@ class MixPanelObserver extends NavigatorObserver {
     }
   }
 
+  Future<void> timeEventForView(String screenName) async {
+    var newScreenEventId = screenEventId;
+
+    if (suffixEventScreenName && isNotBlank(screenName)) {
+      newScreenEventId = '${newScreenEventId}_$screenName';
+    }
+
+    if (isNotBlank(screenName)) {
+      await _mixPanel.timeEvent(newScreenEventId);
+    }
+  }
+
   Future<void> timeEvent({TrafficEventId? eventId}) async {
     await _mixPanel.timeEvent(eventId);
   }
