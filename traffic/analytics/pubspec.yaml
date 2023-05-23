@@ -12,13 +12,6 @@ dependencies:
     sdk: flutter
 
   firebase_analytics: ^9.0.4
-
-  lp_utils:
-    git:
-      url: https://github.com/devobs/flutter-utils
-      path: utils
-      ref: 1.0.0
-
   quiver: ^3.0.1
 
 dev_dependencies:
